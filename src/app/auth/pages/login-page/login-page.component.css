@@ -31,13 +31,13 @@
     justify-content: center;
   }
   
-  .input-container input, .form button {
+  .input-container .form button {
     outline: none;
     border: 1px solid #e5e7eb;
     margin: 8px 0;
   }
   
-  .input-container input {
+  /* .input-container input {
     background-color: #fff;
     padding: 1rem;
     padding-right: 3rem;
@@ -46,9 +46,9 @@
     width: 300px;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  }
+  } */
   
-  .input-container span {
+  /* .input-container span {
     display: grid;
     position: absolute;
     top: 0;
@@ -57,13 +57,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     place-content: center;
-  }
-  
-  .input-container span svg {
-    color: #9CA3AF;
-    width: 1rem;
-    height: 1rem;
-  }
+  } */
   
   .submit {
     display: block;
@@ -95,3 +89,26 @@
   .signup-link a {
     text-decoration: underline;
   }
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+      width: 300px !important;
+  }
+
+  ::ng-deep .mdc-notched-outline > * {
+    border-color: #050531 !important;
+  }
+
+  ::ng-deep .mat-mdc-form-field-label--focused {
+    color: green;
+  }
+
+  ::ng-deep .mdc-text-field--focused .mdc-notched-outline > * {
+    border-color: #ff7e06 !important;
+  }
+
+  ::ng-deep .mdc-text-field--invalid .mdc-notched-outline > * {
+    border-color: #f44336 !important;
+  }
+
+
+  
