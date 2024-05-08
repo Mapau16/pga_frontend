@@ -4,14 +4,13 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Ingresar email</mat-label>
-                <input matInput type="email" formControlName="email">
-                <mat-error>Email incorrecto</mat-error>
+                <input matInput type="text" formControlName="email">
             </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Ingresar contraseña</mat-label>
-                <input matInput type="email" formControlName="email">
+                <input matInput type="password" formControlName="password">
             </mat-form-field>
         </div>
         <button class="submit" type="submit" (click)="login()">

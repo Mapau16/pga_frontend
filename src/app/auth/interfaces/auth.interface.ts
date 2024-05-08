@@ -1,3 +1,5 @@
+import { IUser } from "./user.interface";
+
 export interface Ilogin {
     email: string;
     password: string;
@@ -9,12 +11,8 @@ export interface IAuth {
     message?: string;
 }
 
-export interface IUser {
-    _id:       string;
-    email:     string;
-    username:  string;
-    verified:  boolean;
-    clients:   any[];
-    createdAt: Date;
-    updatedAt: Date;
+export enum AuthStatus {
+    checking = 'checking',
+    authenticated = 'authenticated',
+    notAuthenticated = 'notAuthenticated',
 }

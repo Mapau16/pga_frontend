@@ -1,20 +1,36 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 import { environments } from '../../../environments/environments';
-import { IAuth, Ilogin } from '../interfaces/auth.interface';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { AuthStatus, IAuth, IUser, Ilogin } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _baseUrl: string = environments.baseUrl;
+  private readonly _baseUrl: string = environments.baseUrl;
+
+  private _currentUser = signal<IUser|null>(null);
+  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
+
+  public currentUser = computed(() => this._currentUser());
+  public authStatus = computed(() => this._authStatus());
 
   constructor(private _http: HttpClient) { }
 
-  public login(data: Ilogin): Observable<IAuth> {
+  public login(email: string, password: string): Observable<boolean> {
     const url = `${this._baseUrl}auth/login`;
-    return this._http.post<IAuth>(url, data)
+    const body = { email, password };
+    return this._http.post<IAuth>(url, body)
+      .pipe(
+        tap(({ user, token }) => {
+          this._currentUser.set(user);
+          this._authStatus.set(AuthStatus.authenticated);
+          localStorage.setItem('token', token);
+        }),
+        map(() => true),
+        catchError(err => throwError(() => err.error.message))
+      )
   }
 }
