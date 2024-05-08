@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Ilogin } from '../../interfaces/auth.interface';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -10,26 +12,32 @@ import { Ilogin } from '../../interfaces/auth.interface';
 })
 export class LoginPageComponent {
 
-    public _pattern: string = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/';
+    public _pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-    constructor(private _fb: FormBuilder,
+    constructor(private _fb:          FormBuilder,
                 private _authService: AuthService,
+                private _router:      Router,
     ) { }
 
-    public loginForm = this._fb.nonNullable.group({
+    public loginForm: FormGroup = this._fb.nonNullable.group({
       email: ['', [ Validators.required, Validators.pattern(this._pattern) ]],
       password: ['', Validators.required]
     });
 
     public login(): void {
 
-      const body = {
-        email: this.loginForm.controls.email.value,
-        password: this.loginForm.controls.password.value
-      };
+      this.loginForm.markAllAsTouched();
+      if (this.loginForm.invalid) return;
 
-      this._authService.login(body)
-        .subscribe(res => console.log(res))
+      const { email, password } = this.loginForm.value;
+
+      this._authService.login(email, password )
+        .subscribe({
+          next: () => this._router.navigateByUrl('/dashboard'),
+          error: (error) => {
+            Swal.fire('Error', error, 'error')
+          }
+        })
 
     }
 }

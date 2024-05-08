@@ -31,12 +31,6 @@
     justify-content: center;
   }
   
-  .input-container .form button {
-    outline: none;
-    border: 1px solid #e5e7eb;
-    margin: 8px 0;
-  }
-  
   .submit {
     display: block;
     padding-top: 0.75rem;
@@ -44,6 +38,7 @@
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     background-color: #050531;
+    border: 1px solid #050531;
     color: #ffffff;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -51,10 +46,12 @@
     font-weight: 400;
     width: 100%;
     border-radius: 0.5rem;
+    cursor: pointer;
   }
 
   .submit:hover {
     background-color:#ff7e06;
+    border: 1px solid #ff7e06;
   }
   
   .signup-link {
