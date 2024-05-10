@@ -33,4 +33,9 @@ export class AuthService {
         catchError(err => throwError(() => err.error.message))
       )
   }
+
+  public register(data: any): Observable<any> {
+    const url = `${this._baseUrl}auth/register`;
+    return this._http.post<any>(url, data)
+  }
 }
