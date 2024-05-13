@@ -1,0 +1,21 @@
+<form [formGroup]="clientDialogForm">
+    <mat-dialog-content class="form-content">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-radio-group formControlName="enabled">
+            <mat-label style="color: black;">Estado:</mat-label>
+            <mat-radio-button [value]="true">Activo</mat-radio-button>
+            <mat-radio-button [value]="false">Inactivo</mat-radio-button>
+        </mat-radio-group>
+      
+      </mat-dialog-content>
+</form>
+
+<mat-dialog-actions class="form-actions">
+  <button class="btn-principal" (click)="onClose()">Cancelar</button>
+  <button class="btn-principal" (click)="onSubmitForm()">Guardar</button>
+</mat-dialog-actions>

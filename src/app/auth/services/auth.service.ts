@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { environments } from '../../../environments/environments';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { AuthStatus, IAuth, IUser, Ilogin } from '../interfaces';
 
 @Injectable({
@@ -17,7 +17,19 @@ export class AuthService {
   public currentUser = computed(() => this._currentUser());
   public authStatus = computed(() => this._authStatus());
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
+
+  private _setAuthStatus(user: IUser, token: string) {
+    this._currentUser.set(user);
+    this._authStatus.set(AuthStatus.authenticated);
+    localStorage.setItem('token', token);
+  }
+
+  private _removeAuthStatus() {
+    this._currentUser.set(null);
+    this._authStatus.set(AuthStatus.notAuthenticated);
+    localStorage.removeItem('token');
+  }
 
   public login(email: string, password: string): Observable<boolean> {
     const url = `${this._baseUrl}auth/login`;
@@ -25,9 +37,7 @@ export class AuthService {
     return this._http.post<IAuth>(url, body)
       .pipe(
         tap(({ user, token }) => {
-          this._currentUser.set(user);
-          this._authStatus.set(AuthStatus.authenticated);
-          localStorage.setItem('token', token);
+          this._setAuthStatus(user, token);
         }),
         map(() => true),
         catchError(err => throwError(() => err.error.message))
@@ -37,5 +47,26 @@ export class AuthService {
   public register(data: any): Observable<any> {
     const url = `${this._baseUrl}auth/register`;
     return this._http.post<any>(url, data)
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
+  public validateAuth(): Observable<boolean> {
+    const url = `${this._baseUrl}auth/check-auth`;
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get<IAuth>(url, { headers })
+      .pipe(
+        tap(({ user, token }) => {
+          this._setAuthStatus(user, token);
+        }),
+        map(() => true),
+        catchError(() => {
+          this._removeAuthStatus();
+          return of(false)
+        })
+        //catchError(err => throwError(() => err.error.message))
+      )
   }
 }

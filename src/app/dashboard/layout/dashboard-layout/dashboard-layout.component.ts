@@ -11,9 +11,7 @@ export class DashboardLayoutComponent {
   public user = computed(() => this._authService.currentUser());
 
   public sidebarItems = [
-    {label: 'Listado', icon: 'label', url: './list'},
-    {label: 'Añadir', icon: 'add', url: './new-hero'},
-    {label: 'Buscar', icon: 'search', url: './search'},
+    {label: 'Administración', icon: 'label', url: '/administration'},
   ]
 
   constructor(private _authService: AuthService) {

@@ -1,7 +1,9 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+
 import { AuthService } from '../services/auth.service';
 import { AuthStatus } from '../interfaces';
+import { of, switchMap } from 'rxjs';
 
 export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
@@ -11,9 +13,21 @@ export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
-  //last url visited
-  //localstorage.setItem('url', state.url) 
-
+  if (authService.authStatus() === AuthStatus.checking) {
+    return authService.validateAuth().pipe(
+      switchMap((authenticated: boolean) => {
+        if (authenticated) {
+          // Usuario autenticado, permite la navegación
+          return of(true);
+        } else {
+          // Usuario no autenticado, redirige a la página de inicio de sesión
+          router.navigateByUrl('/auth/login');
+          return of(false);
+        }
+      })
+    );
+  }
+  
   router.navigateByUrl('/auth/login');
   return false;
 };

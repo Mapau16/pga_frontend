@@ -18,6 +18,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -41,7 +45,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSnackBarModule,
-
+    MatTableModule,
+    MatPaginatorModule,
+    MatRadioModule,
+    MatTooltipModule,
   ],
   providers: [provideNativeDateAdapter()],
 })

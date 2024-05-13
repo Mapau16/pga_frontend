@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-administration-layout',
@@ -7,9 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AdministrationLayoutComponent {
 
+  public user = computed(() => this._authService.currentUser());
+
   public sidebarItems = [
-    {label: 'Listado', icon: 'label', url: './list'},
-    {label: 'Añadir', icon: 'add', url: './new-hero'},
-    {label: 'Buscar', icon: 'search', url: './search'},
+    { label: 'Clientes', icon: 'label', url: '/administration/clients' },
+    { label: 'Dashboard', icon: 'label', url: '/dashboard' },
   ]
+
+  constructor(private _authService: AuthService) { }
 }

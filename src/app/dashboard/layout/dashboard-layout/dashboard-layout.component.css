@@ -1,9 +1,32 @@
+.toolbar-content {
+  background-color: #050531;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.toolbar-icons .user {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.user span {
+  font-family: 'Roboto';
+  font-size: 15px;
+}
+
 .example-container {
-    width: 500px;
-    height: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-  }
-  
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
 .example-sidenav-content {
   display: flex;
   height: 100%;
@@ -13,4 +36,14 @@
 
 .example-sidenav {
   padding: 20px;
+}
+
+.close-sesion {
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 0.5rem;
+}
+
+.close-sesion:hover {
+  color: #ff7e06;
 }

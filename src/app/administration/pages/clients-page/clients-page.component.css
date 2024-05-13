@@ -1,0 +1,57 @@
+table {
+  width: 100%;
+}
+
+.mat-header-cell, .mat-cell {
+  justify-content: center;
+  text-align: center;
+}
+
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+.title {
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.header-container {
+  display: flex;
+  gap: 5%;
+}
+
+.btn-principal {
+  background-color: #050531;
+  border: 1px solid #050531;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-family: 'Roboto';
+  font-weight: 400;
+  width: 140px;
+  height: 45px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.btn-principal:hover {
+  background-color: #ff7e06;
+  border: 1px solid #ff7e06;
+}
+
+.action:hover {
+  cursor: pointer;
+  color: #ff7e06;
+}
