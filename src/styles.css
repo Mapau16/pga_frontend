@@ -3,6 +3,24 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.spacer { 
-    flex: 1 1 auto;   
+/* override radio button styles */
+.mat-mdc-radio-button.mat-mdc-radio-checked .mat-ripple-element {
+    background-color: #ff7e06 !important;
 }
+
+.mat-mdc-radio-button.mat-mdc-radio-checked .mdc-radio__background::before {
+    background-color: #ff7e06 !important;
+}
+
+.mat-mdc-radio-button
+    .mdc-radio
+    .mdc-radio__native-control:enabled:checked
+    + .mdc-radio__background
+    .mdc-radio__outer-circle {
+    border-color: #ff7e06 !important;
+}
+
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled + .mdc-radio__background .mdc-radio__inner-circle {
+    border-color: #ff7e06 !important;
+}
+/* override radio button styles */
