@@ -15,10 +15,7 @@ export class ClientService {
   public getClients(): Observable<IClient[]> {
     const url = `${this._baseUrl}client`;
 
-    return this._http.get<IClient[]>(url)
-      .pipe(
-        catchError(() => of([]))
-      )
+    return this._http.get<IClient[]>(url);
   }
 
   public updateClient(idClient: string, data: IClient): Observable<IClient> {
