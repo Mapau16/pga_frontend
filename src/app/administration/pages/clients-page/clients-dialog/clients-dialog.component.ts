@@ -4,6 +4,7 @@ import { IClient } from '../../../interfaces/client.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientService } from '../../../services/client.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-clients-dialog',
@@ -21,7 +22,8 @@ export class ClientsDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ClientsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IClient,
               private _fb: FormBuilder,
-              private _clientService: ClientService) { }
+              private _clientService: ClientService,
+            private _auth: AuthService) { }
 
   ngOnInit(): void {
     if (this.data) {
@@ -52,7 +54,6 @@ export class ClientsDialogComponent implements OnInit {
         }),
         error: (error => Swal.fire('Error', error, 'error'))
       })
-    
   }
   
   public updateClient() {

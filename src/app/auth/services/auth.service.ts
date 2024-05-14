@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { environments } from '../../../environments/environments';
-import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
+import { EMPTY, Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { AuthStatus, IAuth, IUser, Ilogin } from '../interfaces';
 
 @Injectable({
@@ -68,5 +68,21 @@ export class AuthService {
         })
         //catchError(err => throwError(() => err.error.message))
       )
+  }
+
+  public refreshToken() {
+    const user = this.currentUser()?._id;
+    const url = `${this._baseUrl}auth/refresh/${user}`;
+    
+    return this._http.get<{token: string}>(url)
+      .pipe(
+        tap(({ token }) => {
+          localStorage.setItem('token', token);
+        }),
+        catchError(err => throwError(() => {
+          this._removeAuthStatus();
+          err.error.message
+        }))
+      );
   }
 }
