@@ -12,6 +12,9 @@ export class AdministrationLayoutComponent {
 
   public sidebarItems = [
     { label: 'Clientes', icon: 'label', url: '/administration/clients' },
+    { label: 'Lineamientos', icon: 'label', url: '/administration/guidelines' },
+    { label: 'Preguntas', icon: 'label', url: '/administration/questions' },
+    { label: 'Procesos', icon: 'label', url: '/administration/process' },
     { label: 'Dashboard', icon: 'label', url: '/dashboard' },
   ]
 
