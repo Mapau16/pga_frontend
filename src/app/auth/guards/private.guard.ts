@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { AuthStatus } from '../interfaces';
 import { of, switchMap } from 'rxjs';
 
-export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
+export const privateGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 

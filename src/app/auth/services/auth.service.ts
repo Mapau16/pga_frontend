@@ -26,7 +26,7 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  private _removeAuthStatus() {
+  private _removeAuthStatus(): void {
     this._currentUser.set(null);
     this._authStatus.set(AuthStatus.notAuthenticated);
     localStorage.removeItem('token');
@@ -72,7 +72,7 @@ export class AuthService {
       )
   }
 
-  public refreshToken() {
+  public refreshToken(): Observable<{token: string}> {
     const user = this.currentUser()?._id;
     const url = `${this._baseUrl}auth/refresh/${user}`;
     
