@@ -14,7 +14,9 @@ export class DashboardLayoutComponent {
     {label: 'Administración', icon: 'label', url: '/administration'},
   ]
 
-  constructor(private _authService: AuthService) {
-    
+  constructor(private _authService: AuthService) { }
+
+  public logout(): void {
+    this._authService.logout();
   }
 }
