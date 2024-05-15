@@ -13,6 +13,8 @@ import { GuidelinesPageComponent } from './pages/guidelines-page/guidelines-page
 import { GuidelinesDialogComponent } from './pages/guidelines-page/guidelines-dialog/guidelines-dialog.component';
 import { ProcessPageComponent } from './pages/process-page/process-page.component';
 import { ProcessDialogComponent } from './pages/process-page/process-dialog/process-dialog.component';
+import { RolesPageComponent } from './pages/roles-page/roles-page.component';
+import { RolesDialogComponent } from './pages/roles-page/roles-dialog/roles-dialog.component';
 
 
 
@@ -26,7 +28,9 @@ import { ProcessDialogComponent } from './pages/process-page/process-dialog/proc
     GuidelinesPageComponent,
     GuidelinesDialogComponent,
     ProcessPageComponent,
-    ProcessDialogComponent
+    ProcessDialogComponent,
+    RolesPageComponent,
+    RolesDialogComponent
   ],
   imports: [
     CommonModule,
