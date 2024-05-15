@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpStatusCode } from '@angular/common/http';
-import { EMPTY, catchError, concatMap, finalize, switchMap, tap, throwError } from 'rxjs';
+import { EMPTY, catchError, switchMap, throwError } from 'rxjs';
 import { inject } from '@angular/core';
 
 import { RefreshTokenManagerService } from '../../auth/services/refresh-token-manager.service';
@@ -26,7 +26,7 @@ export const errorInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, n
           })
         )
       }
-      return throwError(() => error)
+      return throwError(() => error);
     })
   )
 };

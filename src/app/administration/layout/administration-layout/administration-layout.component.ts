@@ -16,7 +16,7 @@ export class AdministrationLayoutComponent {
     { label: 'Preguntas', icon: 'label', url: '/administration/questions' },
     { label: 'Procesos', icon: 'label', url: '/administration/process' },
     { label: 'Roles', icon: 'label', url: '/administration/roles' },
-    { label: 'Dashboard', icon: 'label', url: '/dashboard' },
+    { label: 'Dashboard', icon: 'label_important', url: '/dashboard' },
   ]
 
   constructor(private _authService: AuthService) { }
