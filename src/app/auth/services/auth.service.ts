@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { environments } from '../../../environments/environments';
-import { EMPTY, Observable, catchError, map, of, tap, throwError } from 'rxjs';
-import { AuthStatus, IAuth, IUser, Ilogin } from '../interfaces';
+import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
+import { AuthStatus, IAuth, IUser } from '../interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
   public currentUser = computed(() => this._currentUser());
   public authStatus = computed(() => this._authStatus());
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _router: Router) {}
 
   private _setAuthStatus(user: IUser, token: string) {
     this._currentUser.set(user);
@@ -29,6 +30,7 @@ export class AuthService {
     this._currentUser.set(null);
     this._authStatus.set(AuthStatus.notAuthenticated);
     localStorage.removeItem('token');
+    this._router.navigateByUrl('/auth/login');
   }
 
   public login(email: string, password: string): Observable<boolean> {
@@ -84,5 +86,9 @@ export class AuthService {
           err.error.message
         }))
       );
+  }
+
+  public logout() {
+    this._removeAuthStatus();
   }
 }

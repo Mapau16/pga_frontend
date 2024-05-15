@@ -20,4 +20,8 @@ export class AdministrationLayoutComponent {
   ]
 
   constructor(private _authService: AuthService) { }
+
+  public logout(): void {
+    this._authService.logout();
+  }
 }

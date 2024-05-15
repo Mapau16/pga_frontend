@@ -5,13 +5,16 @@ import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component'
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
+import { publicGuard } from './guards/public.guard';
+
 const routes: Routes = [
   {
     path: '',
     component: AuthLayoutComponent,
+    canActivate: [publicGuard],
     children: [
-        { path: 'login', component: LoginPageComponent },
-        { path: 'register', component: RegisterPageComponent },
+        { path: 'login', component: LoginPageComponent, canActivate: [publicGuard] },
+        { path: 'register', component: RegisterPageComponent, canActivate: [publicGuard] },
         { path:  '**', redirectTo: 'login'},
     ]
   }

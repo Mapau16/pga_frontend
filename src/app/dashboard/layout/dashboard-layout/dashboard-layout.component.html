@@ -11,10 +11,12 @@
     </mat-toolbar>
 
     <mat-nav-list>
-      <mat-list-item *ngFor="let item of sidebarItems" [routerLink]="item.url" (click)="sidenav.toggle()">
-        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-        {{ item.label }}
-      </mat-list-item>
+      @for (item of sidebarItems; track item) {
+        <mat-list-item [routerLink]="item.url" (click)="sidenav.toggle()">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          {{ item.label }}
+        </mat-list-item>
+      }
     </mat-nav-list>
 
   </mat-sidenav>
@@ -30,7 +32,7 @@
         <span>{{ user()?.username }}</span>
       </div>
 
-      <div class="close-sesion" matTooltip="Cerrar sesión">
+      <div class="close-sesion" matTooltip="Cerrar sesión" (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
       </div>
     </div>
