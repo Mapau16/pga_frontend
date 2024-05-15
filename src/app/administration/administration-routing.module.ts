@@ -8,6 +8,7 @@ import { isAuthenticatedGuard } from '../auth/guards/is-authenticated.guard';
 import { QuestionsPageComponent } from './pages/questions-page/questions-page.component';
 import { GuidelinesPageComponent } from './pages/guidelines-page/guidelines-page.component';
 import { ProcessPageComponent } from './pages/process-page/process-page.component';
+import { RolesPageComponent } from './pages/roles-page/roles-page.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'questions', canActivate: [isAuthenticatedGuard], component: QuestionsPageComponent },
       { path: 'guidelines', canActivate: [isAuthenticatedGuard], component: GuidelinesPageComponent },
       { path: 'process', canActivate: [isAuthenticatedGuard], component: ProcessPageComponent },
+      { path: 'roles', canActivate: [isAuthenticatedGuard], component: RolesPageComponent },
     ]
   },
 

@@ -1,0 +1,44 @@
+
+<div style="margin: 2.5rem;">
+    <h1 class="title">Roles</h1>
+
+    <div class="header-container">
+        <mat-form-field appearance="outline">
+            <mat-label>Buscar por nombre</mat-label>
+            <input matInput (keyup)="searchRole($event)" #input>
+        </mat-form-field>
+
+        <button class="btn-principal" type="submit" (click)="openDialog()">
+            Nuevo Rol
+        </button>
+    </div>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let role"> {{role.name}} </td>
+        </ng-container>
+    
+        <!-- Enabled Column -->
+        <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let role"> {{role.enabled ? 'Activo' : 'Inactivo'}} </td>
+        </ng-container>
+    
+        <!-- Edit Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let role" (click)="openDialog(role)"> 
+                <mat-icon class="action" matTooltip="Editar">create</mat-icon> 
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table>
+    
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
