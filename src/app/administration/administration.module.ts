@@ -15,6 +15,8 @@ import { ProcessPageComponent } from './pages/process-page/process-page.componen
 import { ProcessDialogComponent } from './pages/process-page/process-dialog/process-dialog.component';
 import { RolesPageComponent } from './pages/roles-page/roles-page.component';
 import { RolesDialogComponent } from './pages/roles-page/roles-dialog/roles-dialog.component';
+import { CriterioPageComponent } from './pages/criterio-page/criterio-page.component';
+import { CriterioDialogComponent } from './pages/criterio-page/criterio-dialog/criterio-dialog.component';
 
 
 
@@ -30,7 +32,9 @@ import { RolesDialogComponent } from './pages/roles-page/roles-dialog/roles-dial
     ProcessPageComponent,
     ProcessDialogComponent,
     RolesPageComponent,
-    RolesDialogComponent
+    RolesDialogComponent,
+    CriterioPageComponent,
+    CriterioDialogComponent
   ],
   imports: [
     CommonModule,

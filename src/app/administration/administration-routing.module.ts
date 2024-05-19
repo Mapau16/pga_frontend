@@ -9,6 +9,7 @@ import { QuestionsPageComponent } from './pages/questions-page/questions-page.co
 import { GuidelinesPageComponent } from './pages/guidelines-page/guidelines-page.component';
 import { ProcessPageComponent } from './pages/process-page/process-page.component';
 import { RolesPageComponent } from './pages/roles-page/roles-page.component';
+import { CriterioPageComponent } from './pages/criterio-page/criterio-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'guidelines', canActivate: [privateGuard], component: GuidelinesPageComponent },
       { path: 'process', canActivate: [privateGuard], component: ProcessPageComponent },
       { path: 'roles', canActivate: [privateGuard], component: RolesPageComponent },
+      { path: 'criterio', canActivate: [privateGuard], component: CriterioPageComponent},
       { path: '**', redirectTo: 'clients' }
     ]
   },
