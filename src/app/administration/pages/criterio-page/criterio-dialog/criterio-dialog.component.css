@@ -1,0 +1,28 @@
+.form-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn-principal {
+    background-color: #050531;
+    border: 1px solid #050531;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-family: 'Roboto';
+    font-weight: 400;
+    width: 110px;
+    height: 45px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .btn-principal:hover {
+    background-color: #ff7e06;
+    border: 1px solid #ff7e06;
+  }
