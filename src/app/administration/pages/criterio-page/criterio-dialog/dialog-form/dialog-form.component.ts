@@ -30,10 +30,10 @@ export class DialogFormComponent implements OnInit {
   @Output() newCriterioItem = new EventEmitter<any>();
 
   constructor(private _fb: FormBuilder,
-              private _guidelineService: GuidelineService,
-              private _processService: ProcessService,
-              private _questionService: QuestionService,
-            ) { }
+    private _guidelineService: GuidelineService,
+    private _processService: ProcessService,
+    private _questionService: QuestionService,
+  ) { }
 
   public guidelines: IGuideline[] = [];
   public processes: IProcess[] = [];
@@ -57,7 +57,7 @@ export class DialogFormComponent implements OnInit {
 
     this.criteriosForm.get('guideline')?.valueChanges.pipe(
       debounceTime(500),
-      switchMap((value) => ( value ? this._guidelineService.searchGuidelineByName(value) : EMPTY))
+      switchMap((value) => (value ? this._guidelineService.searchGuidelineByName(value) : EMPTY))
     ).subscribe(res => this.guidelines = res);
 
     this.criteriosForm.get('process')?.valueChanges.pipe(
@@ -69,7 +69,7 @@ export class DialogFormComponent implements OnInit {
       debounceTime(500),
       switchMap((value) => (value ? this._questionService.searchQuestionByName(value) : EMPTY))
     ).subscribe(res => this.questions = res);
-    
+
   }
 
   selectedElement(event: IEvent) {
@@ -77,20 +77,20 @@ export class DialogFormComponent implements OnInit {
   }
 
   public addCriterioItem(): void {
-    if(this._validateCriterioForm()) return;
+
+    if (this._validateCriterioForm(this.criterio)) return;
     this.newCriterioItem.emit(this.criterio);
     this.criterio = {};
     this.criteriosForm.reset();
   }
 
-  private _validateCriterioForm(): boolean {
-
-    this.criteriosForm.markAllAsTouched();
-    if (this.criteriosForm.invalid) {
-      Swal.fire('Error', 'Debe agregar un lineamiento, un proceso y pregunta', 'error');
+  private _validateCriterioForm(criterio: any): boolean {
+    const { guideline, process, question } = criterio
+    if (guideline === "" && process === "" && question === "") {
+      Swal.fire('Error', 'Debe seleccionar un lineamiento, un proceso y una pregunta', 'error');
+      return true;
     }
-
-    return this.criteriosForm.invalid;
+    return false;
   }
-  
+
 }
