@@ -4,7 +4,7 @@ import { CriterioService } from '../../services/criterio.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { ICriterio } from '../../interfaces/criterio.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { CriterioDialogComponent } from './criterio-dialog/criterio-dialog.component';
+import { CriterioDialogComponent } from './criterio-dialog/dialog/criterio-dialog.component';
 
 @Component({
   selector: 'app-criterio-page',
@@ -20,15 +20,15 @@ export class CriterioPageComponent implements OnInit, AfterViewInit {
   constructor(private _criterioService: CriterioService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllCriterio();
+    this.getAllCriterios();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  public getAllCriterio() {
-    this._criterioService.getCriterio()
+  public getAllCriterios() {
+    this._criterioService.getCriterios()
       .subscribe(data => {
         this._setTableDataSource(data);
     })
@@ -46,11 +46,12 @@ export class CriterioPageComponent implements OnInit, AfterViewInit {
 
   public openDialog(criterio?: ICriterio): void {
     const dialogRef = this.dialog.open(CriterioDialogComponent, {
+      width: '750px',
       data: criterio,
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getAllCriterio();
+      this.getAllCriterios();
     });
   }
 }

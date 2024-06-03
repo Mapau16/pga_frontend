@@ -1,10 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ICriterio } from '../../../interfaces/criterio.interface';
+import { ICriterio, ICriterioStatus } from '../../../../interfaces/criterio.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CriterioService } from '../../../services/criterio.service';
+import { CriterioService } from '../../../../services/criterio.service';
 import Swal from 'sweetalert2';
-import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-criterio-dialog',
@@ -13,7 +12,7 @@ import { AuthService } from '../../../../auth/services/auth.service';
 })
 export class CriterioDialogComponent implements OnInit {
 
-  public idCriterio: string = ''; 
+  public idCriterio: string = '';
   public criterioDialogForm: FormGroup = this._fb.nonNullable.group({
     name: ['', Validators.required],
     enabled: [true, Validators.required],
@@ -22,12 +21,11 @@ export class CriterioDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<CriterioDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: ICriterio,
               private _fb: FormBuilder,
-              private _criterioService: CriterioService,
-            private _auth: AuthService) { }
+              private _criterioService: CriterioService,) { }
 
   ngOnInit(): void {
     if (this.data) {
-      this.idCriterio = this.data._id;
+      this.idCriterio = this.data._id!;
       this.criterioDialogForm.reset({
         name: this.data.name,
         enabled: this.data.enabled
@@ -44,13 +42,13 @@ export class CriterioDialogComponent implements OnInit {
 
   public saveCriterio() {
     this._validateForm();
-    const body = this.criterioDialogForm.value;
+    const body = this._mapCriterioBody();
 
     this._criterioService.saveCriterio(body)
       .subscribe({
         next: (() => { 
           this.onClose();
-          Swal.fire('Exito', 'Usuario creado correctamente', 'success');
+          Swal.fire('Exito', 'Criterio creado correctamente', 'success');
         }),
         error: (error => Swal.fire('Error', error, 'error'))
       })
@@ -59,13 +57,22 @@ export class CriterioDialogComponent implements OnInit {
   public updateCriterio() {
 
     this._validateForm();
-    const body = this.criterioDialogForm.value;
+    const body = this._mapCriterioBody();
 
     this._criterioService.updateCriterio(this.idCriterio, body)
       .subscribe({
         next: (() => this.onClose()),
         error: (error => Swal.fire('Error', error, 'error'))
       })
+  }
+
+  private _mapCriterioBody() {
+    const formValues = this.criterioDialogForm.value;
+    return {
+      name: formValues.name,
+      enabled: formValues.enabled,
+      items: this._criterioService.criterioItems(),
+    }
   }
 
   private _validateForm(): void {
@@ -75,6 +82,10 @@ export class CriterioDialogComponent implements OnInit {
 
   onClose(): void {
     this.dialogRef.close();
+  }
+
+  public addCriterioItem(event: any) {
+    this._criterioService.criterioItems.update(items => [...items, event]);
   }
 }
 

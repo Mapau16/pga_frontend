@@ -18,6 +18,12 @@ export class ProcessService {
     return this._http.get<IProcess[]>(url);
   }
 
+  public searchProcessByName(name: string): Observable<IProcess[]> {
+    const url = `${this._baseUrl}process/search?name=${name}`;
+
+    return this._http.get<IProcess[]>(url);
+  }
+
   public updateProcess(idProcess: string, data: IProcess): Observable<IProcess> {
     const url = `${this._baseUrl}process/${idProcess}`;
 

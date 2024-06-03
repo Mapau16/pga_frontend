@@ -1,0 +1,27 @@
+.criterio-form {
+    display: flex;
+    gap: 1%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.2rem;
+}
+
+.btn-add {
+    background-color: #050531;
+    border: 1px solid #050531;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-family: "Roboto";
+    font-weight: 400;
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 930px) {
+    .btn-add {
+        width: 100%;
+    }
+  }

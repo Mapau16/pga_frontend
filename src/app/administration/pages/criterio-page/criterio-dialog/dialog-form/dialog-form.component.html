@@ -1,0 +1,27 @@
+<div>
+    <mat-label style="color: black; padding: 0 0 0 2px;">Agregar nuevo item:</mat-label>
+    <form [formGroup]="criteriosForm" class="criterio-form">
+    
+        <autocomplete [label]="'Lineamiento'" 
+                      [items]="guidelines" 
+                      [control]="'guideline'"
+                      formControlName="guideline" 
+                      (selectedElement)="selectedElement($event)"/>
+        
+        <autocomplete [label]="'Proceso'" 
+                      [items]="processes" 
+                      [control]="'process'"
+                      formControlName="process"
+                      (selectedElement)="selectedElement($event)"/>
+        
+        <autocomplete [label]="'Pregunta'" 
+                      [items]="questions" 
+                      [control]="'question'"
+                      formControlName="question"
+                      (selectedElement)="selectedElement($event)"/>
+
+        <button class="btn-add" (click)="addCriterioItem()">
+            <mat-icon matTooltip="Agregar">add</mat-icon>
+        </button>
+    </form>    
+</div>

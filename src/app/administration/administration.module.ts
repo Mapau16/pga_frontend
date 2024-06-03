@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
-import { AdministrationLayoutComponent } from './layout/administration-layout/administration-layout.component';
 import { MaterialModule } from '../material/material.module';
+
+import { AdministrationLayoutComponent } from './layout/administration-layout/administration-layout.component';
 import { ClientsPageComponent } from './pages/clients-page/clients-page.component';
 import { ClientsDialogComponent } from './pages/clients-page/clients-dialog/clients-dialog.component';
 import { QuestionsPageComponent } from './pages/questions-page/questions-page.component';
@@ -16,7 +17,10 @@ import { ProcessDialogComponent } from './pages/process-page/process-dialog/proc
 import { RolesPageComponent } from './pages/roles-page/roles-page.component';
 import { RolesDialogComponent } from './pages/roles-page/roles-dialog/roles-dialog.component';
 import { CriterioPageComponent } from './pages/criterio-page/criterio-page.component';
-import { CriterioDialogComponent } from './pages/criterio-page/criterio-dialog/criterio-dialog.component';
+import { CriterioDialogComponent } from './pages/criterio-page/criterio-dialog/dialog/criterio-dialog.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { CriterioDialogTableComponent } from './pages/criterio-page/criterio-dialog/dialog-table/criterio-dialog-table.component';
+import { DialogFormComponent } from './pages/criterio-page/criterio-dialog/dialog-form/dialog-form.component';
 
 
 
@@ -34,7 +38,10 @@ import { CriterioDialogComponent } from './pages/criterio-page/criterio-dialog/c
     RolesPageComponent,
     RolesDialogComponent,
     CriterioPageComponent,
-    CriterioDialogComponent
+    CriterioDialogComponent,
+    AutocompleteComponent,
+    CriterioDialogTableComponent,
+    DialogFormComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable, catchError, of, throwError } from 'rxjs';
-import { ICriterio } from '../interfaces/criterio.interface';
+import { ICriterio, ICriterioItems } from '../interfaces/criterio.interface';
 import { environments } from '../../../environments/environments';
 
 @Injectable({
@@ -9,17 +9,26 @@ import { environments } from '../../../environments/environments';
 })
 export class CriterioService {
   private readonly _baseUrl: string = environments.baseUrl;
+  //Declared to manage criterioItems status between dialog and dialog table
+  //TODO: RESET STATUS WHEN DIALOG COMPONENT IS DESTROYED
+  public criterioItems = signal<ICriterioItems[]>([]);
 
   constructor(private _http: HttpClient) { }
 
-  public getCriterio(): Observable<ICriterio[]> {
+  public getCriterios(): Observable<ICriterio[]> {
     const url = `${this._baseUrl}criterio`;
 
     return this._http.get<ICriterio[]>(url);
   }
 
-  public updateCriterio(idCriterio: string, data: ICriterio): Observable<ICriterio> {
-    const url = `${this._baseUrl}criterio/${idCriterio}`;
+  public getCriterioById(idcriterio: string): Observable<ICriterio> {
+    const url = `${this._baseUrl}criterio/${idcriterio}`;
+
+    return this._http.get<ICriterio>(url);
+  }
+
+  public updateCriterio(idcriterio: string, data: ICriterio): Observable<ICriterio> {
+    const url = `${this._baseUrl}criterio/${idcriterio}`;
 
     return this._http.patch<ICriterio>(url, data)
       .pipe(
