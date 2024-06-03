@@ -18,6 +18,12 @@ export class QuestionService {
     return this._http.get<IQuestion[]>(url);
   }
 
+  public searchQuestionByName(name: string): Observable<IQuestion[]> {
+    const url = `${this._baseUrl}question/search?name=${name}`;
+
+    return this._http.get<IQuestion[]>(url);
+  }
+
   public updateQuestion(idQuestion: string, data: IQuestion): Observable<IQuestion> {
     const url = `${this._baseUrl}question/${idQuestion}`;
 

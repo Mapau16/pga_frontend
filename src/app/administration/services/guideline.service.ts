@@ -18,6 +18,12 @@ export class GuidelineService {
     return this._http.get<IGuideline[]>(url);
   }
 
+  public searchGuidelineByName(name: string): Observable<IGuideline[]> {
+    const url = `${this._baseUrl}guideline/search?name=${name}`;
+
+    return this._http.get<IGuideline[]>(url);
+  }
+
   public updateGuideline(idGuideline: string, data: IGuideline): Observable<IGuideline> {
     const url = `${this._baseUrl}guideline/${idGuideline}`;
 

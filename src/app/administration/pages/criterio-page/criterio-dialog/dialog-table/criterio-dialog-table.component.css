@@ -1,0 +1,10 @@
+.action:hover {
+    cursor: pointer;
+    color: #ff7e06;
+  }
+
+  th {
+    font-weight: bold;
+  }
+  
+  

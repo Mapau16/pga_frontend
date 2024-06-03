@@ -1,0 +1,14 @@
+<mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <input type="text"
+           matInput 
+           required
+           [value]="value"
+           (input)="onInput($event)"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+        @for (item of items; track item._id) {
+            <mat-option (click)="onSelect(item)" [value]="item.name">{{ item.name }}</mat-option>
+        }
+    </mat-autocomplete>
+</mat-form-field>
