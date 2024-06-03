@@ -50,7 +50,7 @@ export class GuidelinesDialogComponent implements OnInit {
       .subscribe({
         next: (() => { 
           this.onClose();
-          Swal.fire('Exito', 'Usuario creado correctamente', 'success');
+          Swal.fire('Exito', 'Lineamiento creado correctamente', 'success');
         }),
         error: (error => Swal.fire('Error', error, 'error'))
       })

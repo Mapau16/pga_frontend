@@ -50,7 +50,7 @@ export class RolesDialogComponent implements OnInit {
       .subscribe({
         next: (() => { 
           this.onClose();
-          Swal.fire('Exito', 'Usuario creado correctamente', 'success');
+          Swal.fire('Exito', 'Rol creado correctamente', 'success');
         }),
         error: (error => Swal.fire('Error', error, 'error'))
       })

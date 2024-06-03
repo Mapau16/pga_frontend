@@ -9,6 +9,8 @@
     <mat-autocomplete #auto="matAutocomplete">
         @for (item of items; track item._id) {
             <mat-option (click)="onSelect(item)" [value]="item.name">{{ item.name }}</mat-option>
+        }@empty {
+            <mat-option>Ningún dato encontrado</mat-option>
         }
     </mat-autocomplete>
 </mat-form-field>
