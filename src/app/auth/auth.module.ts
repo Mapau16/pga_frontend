@@ -8,6 +8,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import { ValidateAccountPageComponent } from './pages/validate-account-page/validate-account-page.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component'
     LoginPageComponent,
     RegisterPageComponent,
     AuthLayoutComponent,
+    ValidateAccountPageComponent,
   ],
   imports: [
     CommonModule,

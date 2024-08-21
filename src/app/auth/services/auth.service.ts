@@ -91,4 +91,9 @@ export class AuthService {
   public logout() {
     this._removeAuthStatus();
   }
+  //
+  public validateAccount(token:string):Observable<any> {
+    const url = `${this._baseUrl}auth/validate-email/${token}`;
+    return this._http.get<any>(url)
+  }
 }

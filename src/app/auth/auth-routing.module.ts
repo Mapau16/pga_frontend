@@ -6,6 +6,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 import { publicGuard } from './guards/public.guard';
+import { ValidateAccountPageComponent } from './pages/validate-account-page/validate-account-page.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
         { path: 'login', component: LoginPageComponent, canActivate: [publicGuard] },
         { path: 'register', component: RegisterPageComponent, canActivate: [publicGuard] },
+        { path: 'validate-account/:token', component: ValidateAccountPageComponent, canActivate: [publicGuard]},
         { path:  '**', redirectTo: 'login'},
     ]
   }
