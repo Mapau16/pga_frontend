@@ -1,5 +1,6 @@
 import { Component, computed } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -14,9 +15,19 @@ export class DashboardLayoutComponent {
     {label: 'Administración', icon: 'label_important', url: '/administration'},
   ]
 
-  constructor(private _authService: AuthService) { }
+  isSidenavOpen = true;
+
+  constructor(private _authService: AuthService, 
+              private breakpointObserver: BreakpointObserver) { }
 
   public logout(): void {
     this._authService.logout();
+  }
+
+  ngOnInit(): void {
+    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.Handset])
+      .subscribe(result => {
+        this.isSidenavOpen = !result.matches;
+      });
   }
 }

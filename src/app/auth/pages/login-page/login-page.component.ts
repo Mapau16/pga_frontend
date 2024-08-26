@@ -20,8 +20,8 @@ export class LoginPageComponent {
     ) { }
 
     public loginForm: FormGroup = this._fb.nonNullable.group({
-      email: ['joser18torres@gmail.com', [ Validators.required, Validators.pattern(this._pattern) ]],
-      password: ['test', Validators.required]
+      email: ['', [ Validators.required, Validators.pattern(this._pattern) ]],
+      password: ['', Validators.required]
     });
 
     public login(): void {
