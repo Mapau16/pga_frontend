@@ -21,6 +21,7 @@ import { CriterioDialogComponent } from './pages/criterio-page/criterio-dialog/d
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { CriterioDialogTableComponent } from './pages/criterio-page/criterio-dialog/dialog-table/criterio-dialog-table.component';
 import { DialogFormComponent } from './pages/criterio-page/criterio-dialog/dialog-form/dialog-form.component';
+import { ReviewPageComponent } from './pages/review-page/review-page.component';
 
 
 
@@ -41,7 +42,8 @@ import { DialogFormComponent } from './pages/criterio-page/criterio-dialog/dialo
     CriterioDialogComponent,
     AutocompleteComponent,
     CriterioDialogTableComponent,
-    DialogFormComponent
+    DialogFormComponent,
+    ReviewPageComponent
   ],
   imports: [
     CommonModule,
