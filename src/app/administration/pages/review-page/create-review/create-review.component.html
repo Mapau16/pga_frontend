@@ -112,7 +112,10 @@
       </form>
       <div style="margin-top: 0.5rem;">
         <button mat-button matStepperPrevious>Volver</button>
-        <button class="btn-principal" (click)="saveReview()">Guardar</button>
+        <button class="btn-principal" 
+        [ngStyle]="{'cursor': criterioForm.invalid||criterioselect.invalid?'not-allowed':'pointer'}"
+        [disabled]="criterioForm.invalid||criterioselect.invalid" 
+        (click)="saveReview()">Guardar</button>
       </div>
     </mat-step>
   </mat-stepper>
