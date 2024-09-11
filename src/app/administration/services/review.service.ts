@@ -13,7 +13,7 @@ export class ReviewService {
 
   constructor(private _http: HttpClient) { }
 
-  public getReview(): Observable<IReview[]> {
+  public getReviews(): Observable<IReview[]> {
     const url = `${this._baseUrl}review`;
 
     return this._http.get<IReview[]>(url);
@@ -23,6 +23,12 @@ export class ReviewService {
     const url = `${this._baseUrl}review/search?name=${name}`;
 
     return this._http.get<IReview[]>(url);
+  }
+
+  public searchReviewById(idreview: string): Observable<IReview> {
+    const url = `${this._baseUrl}review/${idreview}`;
+
+    return this._http.get<IReview>(url);
   }
 
   public updateReview(idReview: string, data: IReview): Observable<IReview> {

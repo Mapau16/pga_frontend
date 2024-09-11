@@ -21,6 +21,11 @@ export class CriterioService {
     return this._http.get<ICriterio[]>(url);
   }
 
+  public searchCriterios(name: string): Observable<ICriterio[]> {
+    const url = `${this._baseUrl}criterio/search?name=${name}`;
+    return this._http.get<ICriterio[]>(url);
+  }
+
   public getCriterioById(idcriterio: string): Observable<ICriterio> {
     const url = `${this._baseUrl}criterio/${idcriterio}`;
 

@@ -4,7 +4,6 @@ import { IProcess } from '../../../interfaces/process.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProcessService } from '../../../services/process.service';
 import Swal from 'sweetalert2';
-import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-process-dialog',
@@ -22,8 +21,7 @@ export class ProcessDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ProcessDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IProcess,
               private _fb: FormBuilder,
-              private _processService: ProcessService,
-            private _auth: AuthService) { }
+              private _processService: ProcessService,) { }
 
   ngOnInit(): void {
     if (this.data) {

@@ -11,6 +11,7 @@ import { ProcessPageComponent } from './pages/process-page/process-page.componen
 import { RolesPageComponent } from './pages/roles-page/roles-page.component';
 import { CriterioPageComponent } from './pages/criterio-page/criterio-page.component';
 import { ReviewPageComponent } from './pages/review-page/review-page.component';
+import { CreateReviewComponent } from './pages/review-page/create-review/create-review.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'process', canActivate: [privateGuard], component: ProcessPageComponent },
       { path: 'questions', canActivate: [privateGuard], component: QuestionsPageComponent },
       { path: 'review', canActivate: [privateGuard], component: ReviewPageComponent },
+      { path: 'review/new', canActivate: [privateGuard], component: CreateReviewComponent },
       { path: 'roles', canActivate: [privateGuard], component: RolesPageComponent },
       { path: '**', redirectTo: 'clients' }
     ]
