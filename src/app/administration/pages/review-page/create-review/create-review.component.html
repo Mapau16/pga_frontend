@@ -1,0 +1,118 @@
+<mat-stepper [linear]="true" #stepper [orientation]="(stepperOrientation | async)!">
+
+    <mat-step [stepControl]="reviewForm">
+      <ng-template matStepLabel>Información revisión</ng-template>
+      <form [formGroup]="reviewForm" class="example-form">
+        <div style="display: flex; flex-direction: column;">
+          <mat-form-field>
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Nombre de la revisión" formControlName="name" required>
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>Cliente</mat-label>
+              <mat-select formControlName="client">
+                  @for (client of clients; track client._id) {
+                  <mat-option [value]="client.name">{{client.name}}</mat-option>
+                  }
+              </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button [routerLink]="['/administration', 'review']">Volver</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="cycleForm">
+      <ng-template matStepLabel>Información ciclo</ng-template>
+      <form [formGroup]="cycleForm" class="example-form">
+        <div style="display: flex; flex-direction: column;">
+          <mat-form-field>
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Nombre del ciclo" formControlName="name" required>
+          </mat-form-field>
+          <mat-form-field>
+              <mat-label>Trabajador</mat-label>
+              <input matInput placeholder="Persona a la que se realiza la revisión" formControlName="worker" required>
+          </mat-form-field>
+          <mat-form-field>
+              <mat-label>Rol</mat-label>
+              <mat-select formControlName="role">
+                  @for (role of roles; track role._id) {
+                  <mat-option [value]="role.name">{{role.name}}</mat-option>
+                  }
+              </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Volver</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="criterioForm" label="Información criterio">
+      <form [formGroup]="criterioForm">
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <mat-label>Selecciona un criterio a evaluar:</mat-label>
+          <mat-form-field>
+            <mat-label>Criterios</mat-label>
+            <mat-select [formControl]="criterioselect" name="criterio">
+              @for (criterio of criterios; track criterio._id) {
+              <mat-option [value]="criterio" (click)="selectCriterio(criterio._id)">
+                {{criterio.name}}
+              </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </form>
+    
+      <form [formGroup]="criterioForm">
+        @if(showprogressbar) {
+        <p style="text-align: center;">Buscando criterio...</p>
+        <mat-progress-bar mode="query" />
+        }
+        <div formArrayName="items">
+          <div *ngFor="let game of criterioItems.controls let i = index">
+            <mat-label style="font-weight: bold;">Item {{i+1}}</mat-label>
+            <div [formGroupName]="i" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <mat-form-field>
+                <mat-label>Lineamiento</mat-label>
+                <input matInput placeholder="Nombre de la revisión" formControlName="guideline" readonly="true">
+              </mat-form-field>
+    
+              <mat-form-field>
+                <mat-label>Proceso</mat-label>
+                <input matInput placeholder="Nombre de la revisión" formControlName="process" readonly="true">
+              </mat-form-field>
+    
+              <mat-form-field>
+                <mat-label>Pregunta</mat-label>
+                <input matInput placeholder="Nombre de la revisión" formControlName="question" readonly="true">
+              </mat-form-field>
+    
+              <mat-form-field class="example-full-width">
+                <mat-label>Observación</mat-label>
+                <textarea matInput formControlName="observation" placeholder="Observación" required></textarea>
+              </mat-form-field>
+    
+              <mat-form-field>
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="status">
+                  <mat-option value="NA">NA</mat-option>
+                  <mat-option value="APLICA">APLICA</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div style="margin-top: 0.5rem;">
+        <button mat-button matStepperPrevious>Volver</button>
+        <button class="btn-principal" (click)="saveReview()">Guardar</button>
+      </div>
+    </mat-step>
+  </mat-stepper>

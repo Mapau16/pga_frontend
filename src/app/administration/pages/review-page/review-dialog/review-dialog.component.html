@@ -1,0 +1,66 @@
+<form [formGroup]="reviewDialogForm">
+    <mat-dialog-content class="form-content">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre revisión</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Cliente</mat-label>
+            <mat-select formControlName="client">
+                @for (client of clients; track client._id) {
+                <mat-option [value]="client.name">{{client.name}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <div formGroupName="cycle" class="form-content">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre ciclo</mat-label>
+                <input matInput formControlName="name">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Trabajador</mat-label>
+                <input matInput formControlName="worker">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Rol</mat-label>
+                <mat-select formControlName="role">
+                    @for (role of roles; track role._id) {
+                    <mat-option [value]="role.name">{{role.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Lineamiento</th>
+              <th scope="col">Proceso</th>
+              <th scope="col">Pregunta</th>
+              <th scope="col">Observación</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of items; track item) {
+              <tr>
+                <td data-label="Lineamiento">{{item.guideline}}</td>
+                <td data-label="Proceso">{{item.process}}</td>
+                <td data-label="Pregunta">{{item.question}}</td>
+                <td data-label="Observación">{{item.observation}}</td>
+                <td data-label="Estado">{{item.status}}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </mat-dialog-content>
+</form>
+
+<mat-dialog-actions class="form-actions">
+  <button class="btn-principal" (click)="onClose()">Cancelar</button>
+  <button class="btn-principal" (click)="onSubmitForm()">Guardar</button>
+</mat-dialog-actions>

@@ -1,7 +1,28 @@
 export interface IReview {
-    _id: string;
-    name: string;
+    name:   string;
+    client: string;
+    date:   Date;
+    cycle:  Cycle;
+}
+
+export interface Cycle {
+    name:     string;
+    worker:   string;
+    role:     string;
+    date:     Date;
+    criterio: Criterio;
+}
+
+export interface Criterio {
+    name:    string;
     enabled: boolean;
-    createdAt: Date,
-    updatedAt: Date,
+    items:   Item[];
+}
+
+export interface Item {
+    guideline:    string;
+    process:      string;
+    question:     string;
+    observation?: string;
+    status:       string;
 }

@@ -7,9 +7,9 @@
             <input matInput (keyup)="searchReview($event)" #input>
         </mat-form-field>
 
-        <!-- <button class="btn-principal" type="submit" (click)="openDialog()">
+        <button class="btn-principal" type="submit" [routerLink]="['/administration', 'review', 'new']">
             Nueva revisión
-        </button> -->
+        </button>
     </div>
     
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -20,18 +20,18 @@
             <td mat-cell *matCellDef="let review"> {{review.name}} </td>
         </ng-container>
     
-        <!-- Enabled Column -->
-        <ng-container matColumnDef="enabled">
-            <th mat-header-cell *matHeaderCellDef> Estado </th>
-            <td mat-cell *matCellDef="let review"> {{review.enabled ? 'Activo' : 'Inactivo'}} </td>
+        <!-- Client Column -->
+        <ng-container matColumnDef="client">
+            <th mat-header-cell *matHeaderCellDef> Cliente </th>
+            <td mat-cell *matCellDef="let review"> {{review.client}} </td>
         </ng-container>
     
         <!-- Edit Column -->
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
-            <!-- <td mat-cell *matCellDef="let review" (click)="openDialog(review)"> 
+            <td mat-cell *matCellDef="let review" (click)="openDialog(review._id)"> 
                 <mat-icon class="action" matTooltip="Editar">create</mat-icon> 
-            </td> -->
+            </td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
