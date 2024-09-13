@@ -1,0 +1,58 @@
+<div style="display: flex; width: 100%; justify-content: space-evenly; margin-top: 2rem; flex-wrap: wrap;">
+
+    <div class="chart-container">
+        <strong>Revisiones por roles</strong>
+        <ngx-charts-pie-chart
+              [view]="[350, 250]"
+              [results]="series[0].series"
+              [animations]="animations"
+              [labels]="false"
+              [legend]="true"
+              [legendTitle]="''"
+              [legendPosition]="legendPosition"
+              [doughnut]="true">
+        </ngx-charts-pie-chart>
+    </div>
+
+    <div class="chart-container">
+        <strong>Revisiones por Clientes</strong>
+        <ngx-charts-pie-chart
+              [view]="[350, 250]"
+              [results]="series2[0].series"
+              [animations]="animations"
+              [labels]="false"
+              [legend]="true"
+              [legendTitle]="''"
+              [legendPosition]="legendPosition"
+              [doughnut]="true">
+        </ngx-charts-pie-chart>
+    </div>
+</div>
+
+<div style="padding: 0.8rem; margin-top: 0.9rem;">
+    <h3>Revisiones</h3>
+
+    <table>
+        <thead>
+          <tr>
+            <th scope="col"><div><mat-icon>border_color</mat-icon></div><p>Revisión</p></th>
+            <th scope="col"><div><mat-icon>face</mat-icon></div><p>Trabajador</p></th>
+            <th scope="col"><div><mat-icon>assignment</mat-icon></div><p>Items evaluados</p></th>
+            <th scope="col"><div><mat-icon>mood</mat-icon></div><p>Items que cumple</p></th>
+            <th scope="col"><div><mat-icon>mood_bad</mat-icon></div><p>Items que no cumple</p></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(item of items; track item._id) {
+            <tr>
+              <td data-label="Lineamiento">{{ item.review }}</td>
+              <td data-label="Proceso">{{ item.worker }}</td>
+              <td data-label="Pregunta">{{ item.totalItems }}</td>
+              <td data-label="Observación">{{ item.applycount }}</td>
+              <td data-label="Estado">{{ item.noapplycount }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+</div>
