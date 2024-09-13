@@ -13,13 +13,13 @@ export class AdministrationLayoutComponent {
 
   public sidebarItems = [
     { label: 'Clientes', icon: 'label', url: '/administration/clients' },
-    { label: 'Criterios', icon: 'label', url: '/administration/criterio' },
+    { label: 'Roles', icon: 'label', url: '/administration/roles' },
     { label: 'Lineamientos', icon: 'label', url: '/administration/guidelines' },
     { label: 'Preguntas', icon: 'label', url: '/administration/questions' },
     { label: 'Procesos', icon: 'label', url: '/administration/process' },
+    { label: 'Criterios', icon: 'label', url: '/administration/criterio' },
     { label: 'Revisión', icon: 'label', url: '/administration/review' },
-    { label: 'Roles', icon: 'label', url: '/administration/roles' },
-    { label: 'Dashboard', icon: 'label_important', url: '/dashboard' },
+    { label: 'Dashboard', icon: 'donut_small', url: '/dashboard/statistics' },
   ]
 
   isSidenavOpen = true;

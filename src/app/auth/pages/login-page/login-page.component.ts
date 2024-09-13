@@ -33,7 +33,7 @@ export class LoginPageComponent {
 
       this._authService.login(email, password )
         .subscribe({
-          next: () => this._router.navigateByUrl('/dashboard'),
+          next: () => this._router.navigateByUrl('/dashboard/statistics'),
           error: (error) => {
             Swal.fire('Error', error, 'error')
           }

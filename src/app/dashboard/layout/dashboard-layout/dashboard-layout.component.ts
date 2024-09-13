@@ -12,7 +12,7 @@ export class DashboardLayoutComponent {
   public user = computed(() => this._authService.currentUser());
 
   public sidebarItems = [
-    {label: 'Administración', icon: 'label_important', url: '/administration'},
+    {label: 'Administración', icon: 'settings', url: '/administration'},
   ]
 
   isSidenavOpen = true;
