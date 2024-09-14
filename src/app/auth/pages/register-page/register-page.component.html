@@ -1,25 +1,25 @@
 <div class="form-container">
     <form class="form" [formGroup]="registerForm">
         <p class="form-title">Registrate</p>
-        <div class="input-container">
-            <input placeholder="Usuario" type="email" formControlName="username">
-        </div>
-        <div class="input-container">
-            <input placeholder="Ingresar email" type="email" formControlName="email">
-        </div>
-        <div class="input-container">
-            <input placeholder="Ingresar contraseña" type="password" formControlName="password">
-        </div>
-        <!--<div class="input-container">
-            <input placeholder="Confirmar contraseña" type="password">
-        </div>--> 
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput type="text" formControlName="username">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="text" formControlName="password">
+        </mat-form-field>
         <button class="submit" type="submit" (click)="register()">
             Registrar
         </button>
 
         <p class="signup-link">
            ¿Ya tienes una cuenta?
-            <a [routerLink]="['../login']">Iniciar Sesión</a>
+            <a [routerLink]="['../login']">Inicia Sesión</a>
         </p>
     </form>
 </div>

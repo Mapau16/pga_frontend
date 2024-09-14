@@ -23,7 +23,7 @@ export class ValidateAccountPageComponent implements OnInit {
     this.authservice.validateAccount(this.token)
       .subscribe({
         next: (() => {
-          Swal.fire('Exito', 'Cuenta validada correctamente', 'success')
+          Swal.fire('Exito', 'Cuenta validada correctamente, ya puedes iniciar sesión', 'success')
           setTimeout(() => {
             this._router.navigateByUrl('/')
           },500);

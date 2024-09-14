@@ -82,6 +82,7 @@
 
   .submit:hover {
     background-color:#ff7e06;
+    cursor: pointer;
   }
   
   .signup-link {
@@ -94,3 +95,23 @@
   .signup-link a {
     text-decoration: underline;
   }
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    width: 350px !important;
+}
+
+::ng-deep .mdc-notched-outline > * {
+  border-color: #050531 !important;
+}
+
+::ng-deep .mat-mdc-form-field-label--focused {
+  color: green;
+}
+
+::ng-deep .mdc-text-field--focused .mdc-notched-outline > * {
+  border-color: #ff7e06 !important;
+}
+
+::ng-deep .mdc-text-field--invalid .mdc-notched-outline > * {
+  border-color: #f44336 !important;
+}

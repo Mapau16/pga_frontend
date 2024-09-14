@@ -52,6 +52,7 @@
   .submit:hover {
     background-color:#ff7e06;
     border: 1px solid #ff7e06;
+    cursor: pointer;
   }
   
   .signup-link {
