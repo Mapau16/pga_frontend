@@ -70,6 +70,11 @@ export class CreateReviewComponent {
     return this.criterioForm.get('items') as FormArray;
   }
 
+  public criterioItemsValues(index: number, input: string): string{
+    const data = this.criterioForm.get('items') as FormArray;
+    return data.controls.at(index)?.value[input];
+  }
+
   createItem(item: any): FormGroup {
     return this._formBuilder.group({
       guideline: item.guideline.name,
@@ -88,7 +93,7 @@ export class CreateReviewComponent {
 
   async selectCriterio(criterioid: string) {
     this.showprogressbar = true;
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise(r => setTimeout(r, 2000));
     this._criterioService.getCriterioById(criterioid)
       .subscribe(criterio => {
         this.criterio = criterio;
@@ -98,27 +103,27 @@ export class CreateReviewComponent {
   }
 
   saveReview(){
-    if (this.criterioselect.invalid) {
-      this.criterioselect.markAsTouched();
-      Swal.fire('Error', 'Debe seleccionar un criterio a evaluar', 'info');
-      return
-    }
-    if (this.criterioForm.invalid) {
-      this.criterioForm.markAllAsTouched()
-      Swal.fire('Error', 'Todos los campos son obligatorios', 'info');
-      return
-    }
-    const data = this.mapReviewData() as IReview;
+    // if (this.criterioselect.invalid) {
+    //   this.criterioselect.markAsTouched();
+    //   Swal.fire('Error', 'Debe seleccionar un criterio a evaluar', 'info');
+    //   return
+    // }
+    // if (this.criterioForm.invalid) {
+    //   this.criterioForm.markAllAsTouched()
+    //   Swal.fire('Error', 'Todos los campos son obligatorios', 'info');
+    //   return
+    // }
+    // const data = this.mapReviewData() as IReview;
 
-    this._reviewService.saveReview(data)
-      .subscribe({
-          next: () => {
-            Swal.fire('Exito','Revisión creada correctamente', 'success');  
-            this._router.navigate(['administration', 'review']);
-          },
-          error: (error) => {
-            Swal.fire('Error', error, 'error')}
-      });
+    // this._reviewService.saveReview(data)
+    //   .subscribe({
+    //       next: () => {
+    //         Swal.fire('Exito','Revisión creada correctamente', 'success');  
+    //         this._router.navigate(['administration', 'review']);
+    //       },
+    //       error: (error) => {
+    //         Swal.fire('Error', error, 'error')}
+    //   });
   }
 
   mapReviewData() {

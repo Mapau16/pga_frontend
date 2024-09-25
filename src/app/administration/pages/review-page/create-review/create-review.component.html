@@ -81,17 +81,17 @@
             <div [formGroupName]="i" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <mat-form-field>
                 <mat-label>Lineamiento</mat-label>
-                <input matInput placeholder="Nombre de la revisión" formControlName="guideline" readonly="true">
+                <input matInput placeholder="Nombre de la revisión" [matTooltip]="criterioItemsValues(i, 'guideline')" formControlName="guideline" readonly="true">
               </mat-form-field>
     
               <mat-form-field>
                 <mat-label>Proceso</mat-label>
-                <input matInput placeholder="Nombre de la revisión" formControlName="process" readonly="true">
+                <input matInput placeholder="Nombre de la revisión" [matTooltip]="criterioItemsValues(i, 'process')" formControlName="process" readonly="true">
               </mat-form-field>
     
               <mat-form-field>
                 <mat-label>Pregunta</mat-label>
-                <input matInput placeholder="Nombre de la revisión" formControlName="question" readonly="true">
+                <input matInput placeholder="Nombre de la revisión" [matTooltip]="criterioItemsValues(i, 'question')" formControlName="question" readonly="true">
               </mat-form-field>
     
               <mat-form-field class="example-full-width">
@@ -102,8 +102,8 @@
               <mat-form-field>
                 <mat-label>Estado</mat-label>
                 <mat-select formControlName="status">
-                  <mat-option value="NA">NA</mat-option>
-                  <mat-option value="APLICA">APLICA</mat-option>
+                  <mat-option value="NO CUMPLE">No cumple</mat-option>
+                  <mat-option value="CUMPLE">Cumple</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -112,9 +112,9 @@
       </form>
       <div style="margin-top: 0.5rem;">
         <button mat-button matStepperPrevious>Volver</button>
-        <button class="btn-principal" 
-        [ngStyle]="{'cursor': criterioForm.invalid||criterioselect.invalid?'not-allowed':'pointer'}"
-        [disabled]="criterioForm.invalid||criterioselect.invalid" 
+        <button class="btn-principal" style="margin-left: 0.5rem;"
+        [ngStyle]="{'cursor': criterioForm.invalid||criterioselect.invalid||showprogressbar?'not-allowed':'pointer'}"
+        [disabled]="criterioForm.invalid||criterioselect.invalid||showprogressbar" 
         (click)="saveReview()">Guardar</button>
       </div>
     </mat-step>
