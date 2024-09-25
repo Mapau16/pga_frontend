@@ -13,6 +13,7 @@ export class DashboardLayoutComponent {
 
   public sidebarItems = [
     {label: 'Administración', icon: 'settings', url: '/administration'},
+    {label: 'Revisión', icon: 'label', url: '/administration/review'},
   ]
 
   isSidenavOpen = true;

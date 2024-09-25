@@ -5,7 +5,7 @@
       <form [formGroup]="reviewForm" class="example-form">
         <div style="display: flex; flex-direction: column;">
           <mat-form-field>
-              <mat-label>Nombre</mat-label>
+              <mat-label>Nombre revisión</mat-label>
               <input matInput placeholder="Nombre de la revisión" formControlName="name" required>
           </mat-form-field>
 
@@ -30,11 +30,11 @@
       <form [formGroup]="cycleForm" class="example-form">
         <div style="display: flex; flex-direction: column;">
           <mat-form-field>
-              <mat-label>Nombre</mat-label>
+              <mat-label>Nombre ciclo</mat-label>
               <input matInput placeholder="Nombre del ciclo" formControlName="name" required>
           </mat-form-field>
           <mat-form-field>
-              <mat-label>Trabajador</mat-label>
+              <mat-label>Colaborador</mat-label>
               <input matInput placeholder="Persona a la que se realiza la revisión" formControlName="worker" required>
           </mat-form-field>
           <mat-form-field>
@@ -70,13 +70,13 @@
         </div>
       </form>
     
+      @if(showprogressbar) {
+      <p style="text-align: center;">Buscando criterio...</p>
+      <mat-progress-bar mode="query" />
+      }
       <form [formGroup]="criterioForm">
-        @if(showprogressbar) {
-        <p style="text-align: center;">Buscando criterio...</p>
-        <mat-progress-bar mode="query" />
-        }
         <div formArrayName="items">
-          <div *ngFor="let game of criterioItems.controls let i = index">
+          <div *ngFor="let control of criterioItems.controls let i = index">
             <mat-label style="font-weight: bold;">Item {{i+1}}</mat-label>
             <div [formGroupName]="i" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <mat-form-field>
@@ -96,7 +96,7 @@
     
               <mat-form-field class="example-full-width">
                 <mat-label>Observación</mat-label>
-                <textarea matInput formControlName="observation" placeholder="Observación" required></textarea>
+                <textarea matInput formControlName="observation" placeholder="Observación"></textarea>
               </mat-form-field>
     
               <mat-form-field>
