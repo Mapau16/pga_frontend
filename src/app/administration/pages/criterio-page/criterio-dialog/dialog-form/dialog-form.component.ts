@@ -50,7 +50,7 @@ export class DialogFormComponent implements OnInit {
     process: '',
     question: '',
     observation: '',
-    status: 'APLICA',
+    status: 'CUMPLE',
   }
 
   ngOnInit(): void {
