@@ -103,27 +103,27 @@ export class CreateReviewComponent {
   }
 
   saveReview(){
-    // if (this.criterioselect.invalid) {
-    //   this.criterioselect.markAsTouched();
-    //   Swal.fire('Error', 'Debe seleccionar un criterio a evaluar', 'info');
-    //   return
-    // }
-    // if (this.criterioForm.invalid) {
-    //   this.criterioForm.markAllAsTouched()
-    //   Swal.fire('Error', 'Todos los campos son obligatorios', 'info');
-    //   return
-    // }
-    // const data = this.mapReviewData() as IReview;
+     if (this.criterioselect.invalid) {
+       this.criterioselect.markAsTouched();
+      Swal.fire('Error', 'Debe seleccionar un criterio a evaluar', 'info');
+       return
+    }
+     if (this.criterioForm.invalid) {
+       this.criterioForm.markAllAsTouched()
+      Swal.fire('Error', 'Todos los campos son obligatorios', 'info');
+      return
+    }
+     const data = this.mapReviewData() as IReview;
 
-    // this._reviewService.saveReview(data)
-    //   .subscribe({
-    //       next: () => {
-    //         Swal.fire('Exito','Revisión creada correctamente', 'success');  
-    //         this._router.navigate(['administration', 'review']);
-    //       },
-    //       error: (error) => {
-    //         Swal.fire('Error', error, 'error')}
-    //   });
+     this._reviewService.saveReview(data)
+      .subscribe({
+           next: () => {
+             Swal.fire('Exito','Revisión creada correctamente', 'success');  
+             this._router.navigate(['administration', 'review']);
+           },
+           error: (error) => {
+             Swal.fire('Error', error, 'error')}
+       });
   }
 
   mapReviewData() {
