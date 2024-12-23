@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -8,21 +8,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { apiInterceptor } from './shared/interceptors/api.interceptor';
 import { errorInterceptor } from './shared/interceptors/error.interceptor';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
-  providers: [
-    provideAnimationsAsync(),
-    provideHttpClient(
-      withInterceptors([apiInterceptor, errorInterceptor]),
-    )
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule], providers: [
+        provideAnimationsAsync(),
+        provideHttpClient(withInterceptors([apiInterceptor, errorInterceptor])),
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
